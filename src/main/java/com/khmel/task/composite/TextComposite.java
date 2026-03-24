@@ -19,6 +19,10 @@ public class TextComposite extends TextComponent {
     return components.remove(component);
   }
 
+  public List<TextComponent> getComponents() {
+    return components;
+  }
+
   @Override
   public String buildText() {
     StringBuilder text = new StringBuilder();

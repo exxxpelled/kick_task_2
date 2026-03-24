@@ -5,9 +5,9 @@ import com.khmel.task.composite.TextComposite;
 import java.util.OptionalInt;
 
 public interface TextService {
-  OptionalInt findMaxAmountSentencesWithSimilarWords();
+  OptionalInt findMaxAmountSentencesWithSimilarWords(TextComposite textComposite);
 
-  void displaySentencesSortedByLexemesAmount();
+  void displaySentencesSortedByLexemesAmount(TextComposite textComposite);
 
-  TextComposite swapLexemes();
+  TextComposite swapLexemes(TextComposite textComposite);
 }
