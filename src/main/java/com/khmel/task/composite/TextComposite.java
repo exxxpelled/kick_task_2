@@ -22,7 +22,7 @@ public class TextComposite extends TextComponent {
   }
 
   public List<TextComponent> getComponents() {
-    return components;
+    return new ArrayList<>(components);
   }
 
   @Override
