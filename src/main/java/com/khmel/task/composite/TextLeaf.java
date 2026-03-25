@@ -1,15 +1,25 @@
 package com.khmel.task.composite;
 
 public class TextLeaf extends TextComponent {
-  private String text;
+  private Character symbol;
 
-  public TextLeaf(String text, TextComponentType componentType) {
-    this.text = text;
+  public TextLeaf(Character symbol, TextComponentType componentType) {
+    this.symbol = symbol;
     this.componentType = componentType;
   }
 
   @Override
+  public int countLetters() {
+    return componentType == TextComponentType.LETTER ? 1 : 0;
+  }
+
+  @Override
+  public int countAllSymbols() {
+    return 1;
+  }
+
+  @Override
   public String buildText() {
-    return text;
+    return symbol.toString();
   }
 }

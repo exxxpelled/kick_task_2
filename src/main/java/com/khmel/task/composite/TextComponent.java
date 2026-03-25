@@ -11,5 +11,9 @@ public abstract class TextComponent {
     this.componentType = componentType;
   }
 
+  public abstract int countLetters();
+
+  public abstract int countAllSymbols();
+
   public abstract String buildText();
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 public class TextComposite extends TextComponent {
   private static final String SPACE = " ";
+  private static final String TAB = SPACE.repeat(4);
+  private static final String LINE_BREAK = "\n";
   private List<TextComponent> components = new ArrayList<>();
 
   public TextComposite(TextComponentType componentType) {
@@ -24,6 +26,24 @@ public class TextComposite extends TextComponent {
   }
 
   @Override
+  public int countLetters() {
+    int count = 0;
+    for (TextComponent component : components) {
+      count += component.countLetters();
+    }
+    return count;
+  }
+
+  @Override
+  public int countAllSymbols() {
+    int count = 0;
+    for (TextComponent component : components) {
+      count += component.countAllSymbols();
+    }
+    return count;
+  }
+
+  @Override
   public String buildText() {
     StringBuilder text = new StringBuilder();
     TextComponent previousComponent = null;
@@ -31,9 +51,9 @@ public class TextComposite extends TextComponent {
     for (TextComponent component : components) {
       if (component.getComponentType() == TextComponentType.PARAGRAPH) {
         if (previousComponent != null) {
-          text.append("\n");
+          text.append(LINE_BREAK);
         }
-        text.append(SPACE.repeat(4));
+        text.append(TAB);
       } else if (component.getComponentType() == TextComponentType.SENTENCE) {
         if (previousComponent != null &&
                 previousComponent.getComponentType() != TextComponentType.PARAGRAPH) {
