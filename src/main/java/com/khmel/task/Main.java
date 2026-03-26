@@ -35,7 +35,7 @@ public class Main {
       int lettersAmount = textComposite.countLetters();
       logger.info("Letters amount: {}", lettersAmount);
 
-      int symbolsAmount = textComposite.countAllSymbols();
+      int symbolsAmount = textComposite.countSymbolsWithoutSpaces();
       logger.info("Symbols amount: {}", symbolsAmount);
     } catch (CustomException e) {
       logger.error("Error: {}", e.getMessage());

@@ -35,10 +35,10 @@ public class TextComposite extends TextComponent {
   }
 
   @Override
-  public int countAllSymbols() {
+  public int countSymbolsWithoutSpaces() {
     int count = 0;
     for (TextComponent component : components) {
-      count += component.countAllSymbols();
+      count += component.countSymbolsWithoutSpaces();
     }
     return count;
   }

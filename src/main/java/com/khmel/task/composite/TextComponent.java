@@ -13,7 +13,7 @@ public abstract class TextComponent {
 
   public abstract int countLetters();
 
-  public abstract int countAllSymbols();
+  public abstract int countSymbolsWithoutSpaces();
 
   public abstract String buildText();
 }

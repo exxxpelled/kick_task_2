@@ -14,7 +14,7 @@ public class TextLeaf extends TextComponent {
   }
 
   @Override
-  public int countAllSymbols() {
+  public int countSymbolsWithoutSpaces() {
     return 1;
   }
 

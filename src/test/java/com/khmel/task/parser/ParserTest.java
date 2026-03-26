@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTest {
   @Test
-  void wordParser() {
+  void wordParserTest() {
     LetterParser letterParser = new LetterParser();
     WordParser wordParser = new WordParser(letterParser);
     TextComposite wordComposite = new TextComposite(TextComponentType.WORD);
@@ -38,7 +38,7 @@ public class ParserTest {
   }
 
   @Test
-  void lexemeParser() {
+  void lexemeParserTest() {
     SymbolParser symbolParser = new SymbolParser();
     LetterParser letterParser = new LetterParser();
     WordParser wordParser = new WordParser(letterParser);
@@ -76,7 +76,7 @@ public class ParserTest {
   }
 
   @Test
-  void sentenceParser() {
+  void sentenceParserTest() {
     SymbolParser symbolParser = new SymbolParser();
     LetterParser letterParser = new LetterParser();
     WordParser wordParser = new WordParser(letterParser);
@@ -97,6 +97,34 @@ public class ParserTest {
 
     assertEquals(TextComponentType.LEXEME, sentenceComponents.get(2).getComponentType());
     assertEquals("(abc).", sentenceComponents.get(2).buildText());
+  }
+
+  @Test
+  void paragraphParserTest() {
+    SymbolParser symbolParser = new SymbolParser();
+    LetterParser letterParser = new LetterParser();
+    WordParser wordParser = new WordParser(letterParser);
+    LexemeParser lexemeParser = new LexemeParser(wordParser, symbolParser);
+    SentenceParser sentenceParser = new SentenceParser(lexemeParser);
+    ParagraphParser paragraphParser = new ParagraphParser(sentenceParser);
+    TextComposite paragraphComposite = new TextComposite(TextComponentType.PARAGRAPH);
+    String paragraph = "'Hello' world (abc). Java Innowise! 1234? test test";
+    paragraphParser.parse(paragraph, paragraphComposite);
+    List<TextComponent> paragraphComponents = paragraphComposite.getComponents();
+
+    assertEquals(4, paragraphComponents.size());
+
+    assertEquals(TextComponentType.SENTENCE, paragraphComponents.get(0).getComponentType());
+    assertEquals("'Hello' world (abc).", paragraphComponents.get(0).buildText());
+
+    assertEquals(TextComponentType.SENTENCE, paragraphComponents.get(1).getComponentType());
+    assertEquals("Java Innowise!", paragraphComponents.get(1).buildText());
+
+    assertEquals(TextComponentType.SENTENCE, paragraphComponents.get(2).getComponentType());
+    assertEquals("1234?", paragraphComponents.get(2).buildText());
+
+    assertEquals(TextComponentType.SENTENCE, paragraphComponents.get(3).getComponentType());
+    assertEquals("test test", paragraphComponents.get(3).buildText());
   }
 }
 
