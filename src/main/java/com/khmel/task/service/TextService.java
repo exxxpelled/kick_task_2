@@ -9,5 +9,5 @@ public interface TextService {
 
   void displaySentencesSortedByLexemesAmount(TextComposite textComposite);
 
-  TextComposite swapLexemes(TextComposite textComposite);
+  TextComposite swapFirstAndLastLexemes(TextComposite textComposite);
 }
